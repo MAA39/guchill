@@ -23,7 +23,7 @@
     {
       "binding": "DB",
       "database_name": "guchill-db",
-      "database_id": "TBD"  // wrangler d1 create guchill-db で取得して貼る
+      "database_id": "812eaf6c-b007-457b-ba7f-b5f1f94d10d1"
     }
   ],
   "ai": {
