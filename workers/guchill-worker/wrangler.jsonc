@@ -1,0 +1,35 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "guchill-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "GUCHILL_AGENT",
+        "class_name": "GuchillAgent"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      // ⚠️ 忘れるとDO SQLiteが無効化されサイレント失敗する
+      "new_sqlite_classes": ["GuchillAgent"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "guchill-db",
+      "database_id": "TBD"  // wrangler d1 create guchill-db で取得して貼る
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    "AI_PROVIDER": "workers_ai"
+  }
+}
