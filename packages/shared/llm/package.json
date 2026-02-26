@@ -7,8 +7,12 @@
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ai": "^6.0.0",
+    "workers-ai-provider": "^3.1.1"
+  },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.0.0",
     "typescript": "^5.5.0"
   }
 }

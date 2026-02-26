@@ -1,2 +1,2 @@
-// 危機ゲート（Day 6で実装 — ADR-011）
-export {};
+export { isCrisisText, crisisResponseJa } from "./crisis";
+export { CRISIS_KEYWORDS } from "./keywords";

@@ -1,2 +1,1 @@
-// LLMプロバイダーファクトリ（Day 4で実装）
-export {};
+export { getModel, type LLMEnv } from "./factory";
