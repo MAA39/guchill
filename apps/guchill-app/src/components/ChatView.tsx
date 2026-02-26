@@ -21,6 +21,7 @@ export function ChatView({ onLogout }: { onLogout: () => void }) {
     sendMessage,
     status,
     clearHistory,
+    addToolOutput,
   } = useAgentChat({
     agent,
     // Day 2: echo 段階では復元不要。null で初期fetchをスキップ。
@@ -28,6 +29,14 @@ export function ChatView({ onLogout }: { onLogout: () => void }) {
   });
 
   const isStreaming = status === "streaming";
+
+  // present_choices: ユーザーが3択を選択 → addToolOutputで返す
+  const handleChoiceSelect = (toolCallId: string, choiceId: string, label: string) => {
+    addToolOutput({
+      toolCallId,
+      output: JSON.stringify({ selected: choiceId, label }),
+    });
+  };
 
   // メッセージ追加時にスクロール
   useEffect(() => {
@@ -120,7 +129,11 @@ export function ChatView({ onLogout }: { onLogout: () => void }) {
           </div>
         )}
         {messages.map((msg: UIMessage) => (
-          <MessageBubble key={msg.id} message={msg} />
+          <MessageBubble
+            key={msg.id}
+            message={msg}
+            onChoiceSelect={handleChoiceSelect}
+          />
         ))}
         <div ref={bottomRef} />
       </div>
