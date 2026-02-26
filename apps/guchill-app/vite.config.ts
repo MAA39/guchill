@@ -5,7 +5,16 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:8787',
+      // WebSocket + HTTP を Worker に転送
+      '/agent': {
+        target: 'http://localhost:8787',
+        ws: true, // ← WebSocket Upgrade を転送するために必須
+        changeOrigin: true,
+      },
+      '/api': {
+        target: 'http://localhost:8787',
+        changeOrigin: true,
+      },
     },
   },
 });
