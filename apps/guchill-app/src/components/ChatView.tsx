@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useAgent } from "agents/react";
 import { useAgentChat } from "@cloudflare/ai-chat/react";
 import { MessageBubble } from "./MessageBubble";
+import { authClient } from "../lib/auth-client";
 import type { UIMessage } from "ai";
 
-export function ChatView() {
+export function ChatView({ onLogout }: { onLogout: () => void }) {
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -67,20 +68,39 @@ export function ChatView() {
         }}>
           🧘 GuChill
         </h1>
-        <button
-          onClick={clearHistory}
-          style={{
-            background: "none",
-            border: "1px solid #ddd",
-            borderRadius: 8,
-            padding: "4px 10px",
-            fontSize: 13,
-            color: "#888",
-            cursor: "pointer",
-          }}
-        >
-          クリア
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button
+            onClick={clearHistory}
+            style={{
+              background: "none",
+              border: "1px solid #ddd",
+              borderRadius: 8,
+              padding: "4px 10px",
+              fontSize: 13,
+              color: "#888",
+              cursor: "pointer",
+            }}
+          >
+            クリア
+          </button>
+          <button
+            onClick={async () => {
+              await authClient.signOut();
+              onLogout();
+            }}
+            style={{
+              background: "none",
+              border: "1px solid #ddd",
+              borderRadius: 8,
+              padding: "4px 10px",
+              fontSize: 13,
+              color: "#e74c3c",
+              cursor: "pointer",
+            }}
+          >
+            ログアウト
+          </button>
+        </div>
       </div>
 
       {/* メッセージ一覧 */}

@@ -9,6 +9,7 @@ export interface Env {
   ANTHROPIC_MODEL?: string;
   OPENAI_API_KEY?: string;
   OPENAI_MODEL?: string;
-  BETTER_AUTH_SECRET?: string;
+  // Better Auth
+  BETTER_AUTH_SECRET: string;
   BETTER_AUTH_URL?: string;
 }
