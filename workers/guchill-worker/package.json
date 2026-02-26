@@ -10,13 +10,16 @@
   "dependencies": {
     "@cloudflare/ai-chat": "0.1.4",
     "@guchill/do-schema": "workspace:*",
+    "@guchill/llm": "workspace:*",
     "agents": "^0.6.0",
     "ai": "^6.0.0",
     "better-auth": "^1.4.19",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.0.0",
     "workers-ai-provider": "^3.1.1",
-    "zod": "^3.23.0"
+    "zod": "^3.23.0",
+    "@guchill/tools": "workspace:*",
+    "@guchill/safety": "workspace:*"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.0.0",
